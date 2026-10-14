@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1223">
+  <meta name="description" content="InfraPulse network and host observability dashboard">
+  <title>InfraPulse · Infrastructure Monitoring</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark"><span></span><span></span><span></span></div><div><strong>Infra<span>Pulse</span></strong><small>OBSERVABILITY</small></div></div>
+      <div class="sidebar-label">WORKSPACE</div>
+      <a class="nav-link active" href="/"><span class="nav-icon">▦</span> Overview</a>
+      <a class="nav-link" href="#devices"><span class="nav-icon">⌘</span> Network devices</a>
+      <a class="nav-link" href="#resources"><span class="nav-icon">◫</span> System metrics</a>
+      <a class="nav-link" href="#events"><span class="nav-icon">◷</span> Alert activity</a>
+      <div class="sidebar-bottom"><div class="sidebar-help"><strong>Prometheus ready</strong><p>Metrics at <code>/metrics</code>. Configure Grafana from the included Docker stack.</p></div><span class="version">INFRASTRUCTURE MONITOR · V1.0</span></div>
+    </aside>
+    <main class="content">
+      <header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong>Overview</strong></div><div class="top-actions"><span class="live-dot"></span><span id="connection-status">Connecting</span><span class="divider-vertical"></span><span class="clock" id="current-time">--:--:--</span></div></header>
+      <div class="page">
+        <div class="heading-row"><div><div class="eyebrow">INFRASTRUCTURE / OVERVIEW</div><h1>System overview<span class="title-accent">.</span></h1><p class="subtitle">Real-time network availability and local host performance.</p></div><div class="last-check"><span class="sync-icon">↻</span> <span id="last-check">Awaiting first scan...</span></div></div>
+        <section class="kpi-grid" aria-label="Network availability summary">
+          <article class="kpi"><div class="kpi-top"><span>Monitored devices</span><span class="kpi-icon indigo">◈</span></div><strong id="total-devices">—</strong><small>Configured ICMP targets</small></article>
+          <article class="kpi"><div class="kpi-top"><span>Healthy devices</span><span class="kpi-icon green">✓</span></div><strong id="up-devices">—</strong><small>100% of last probes successful</small></article>
+          <article class="kpi"><div class="kpi-top"><span>Down / degraded</span><span class="kpi-icon red">!</span></div><strong id="issue-devices">—</strong><small>Includes probe errors</small></article>
+          <article class="kpi"><div class="kpi-top"><span>Average latency</span><span class="kpi-icon blue">↗</span></div><strong id="avg-latency">—</strong><small>Across responding devices</small></article>
+        </section>
+        <section class="section" id="resources"><div class="section-heading"><div><h2>Host resources</h2><p>Measurements from the machine running InfraPulse</p></div><span class="section-meta" id="sample-rate">Sampling every —</span></div>
+          <div class="resource-grid">
+            <article class="panel resource-panel"><div class="panel-eyebrow">CPU USAGE <span class="resource-mini">PROCESSOR</span></div><div class="resource-number"><strong id="cpu-value">—</strong><span>%</span></div><div class="track"><div class="fill fill-purple" id="cpu-bar"></div></div><div class="resource-footer"><span>Utilization</span><span id="cpu-state">Awaiting data</span></div></article>
+            <article class="panel resource-panel"><div class="panel-eyebrow">MEMORY USAGE <span class="resource-mini">RAM</span></div><div class="resource-number"><strong id="ram-value">—</strong><span>%</span></div><div class="track"><div class="fill fill-blue" id="ram-bar"></div></div><div class="resource-footer"><span>Utilization</span><span id="ram-state">Awaiting data</span></div></article>
+            <article class="panel resource-panel"><div class="panel-eyebrow">DISK USAGE <span class="resource-mini">STORAGE</span></div><div class="resource-number"><strong id="disk-value">—</strong><span>%</span></div><div class="track"><div class="fill fill-teal" id="disk-bar"></div></div><div class="resource-footer"><span>Utilization</span><span id="disk-state">Awaiting data</span></div></article>
+          </div>
+        </section>
+        <section class="middle-grid"><article class="panel graph-panel"><div class="panel-heading"><div><h2>Resource utilization</h2><p>Latest 80 collected samples</p></div><div class="legend"><span><i class="legend-cpu"></i> CPU</span><span><i class="legend-ram"></i> RAM</span></div></div><div id="history-chart" class="chart-area" role="img" aria-label="CPU and RAM percentage history">Collecting data…</div><div class="chart-footer"><span>Older</span><span>Recent</span></div></article>
+          <article class="panel bandwidth-panel"><div class="panel-heading"><div><h2>Network throughput</h2><p>Aggregate traffic on local interfaces</p></div></div><div class="bandwidth-value"><div><span class="traffic-direction">↓ INCOMING</span><strong id="rx-value">—</strong><small>Mbps</small></div><div><span class="traffic-direction">↑ OUTGOING</span><strong id="tx-value">—</strong><small>Mbps</small></div></div><div class="info-note"><span>ⓘ</span> Bandwidth reflects the local monitor host, not remote router interface counters.</div></article></section>
+        <section class="section" id="devices"><div class="section-heading"><div><h2>Network devices</h2><p>ICMP reachability, round-trip time and packet loss</p></div><span class="section-meta">Last poll status</span></div><div class="panel table-wrap"><table><thead><tr><th>DEVICE</th><th>HOST / ADDRESS</th><th>STATUS</th><th>LATENCY</th><th>PACKET LOSS</th></tr></thead><tbody id="device-rows"><tr><td colspan="5" class="empty">Waiting for the first monitoring cycle…</td></tr></tbody></table></div></section>
+        <section class="section" id="events"><div class="section-heading"><div><h2>Alert activity</h2><p>Recorded state transitions and threshold warnings</p></div><span class="section-meta">Latest 20 events</span></div><div class="panel events-panel" id="event-rows"><div class="empty">No alerts have been recorded.</div></div></section>
+        <footer><span>INFRA<span class="footer-accent">PULSE</span> <span class="footer-sep">/</span> BUILT FOR OBSERVABILITY</span><span>FastAPI · SQLite · Prometheus</span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

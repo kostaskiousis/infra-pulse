@@ -1,0 +1,19 @@
+{
+  "uid": "infrapulse-overview",
+  "title": "InfraPulse - Infrastructure Overview",
+  "tags": ["infrapulse", "network", "monitoring"],
+  "timezone": "browser",
+  "schemaVersion": 40,
+  "version": 1,
+  "refresh": "15s",
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    {"id": 1, "title": "Targets up", "type": "stat", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 5, "w": 6, "x": 0, "y": 0}, "targets": [{"expr": "sum(infrapulse_device_up)", "refId": "A"}], "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}},
+    {"id": 2, "title": "Local CPU %", "type": "stat", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 5, "w": 6, "x": 6, "y": 0}, "targets": [{"expr": "infrapulse_system_cpu_percent", "refId": "A"}], "fieldConfig": {"defaults": {"unit": "percent"}, "overrides": []}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}},
+    {"id": 3, "title": "Local RAM %", "type": "stat", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 5, "w": 6, "x": 12, "y": 0}, "targets": [{"expr": "infrapulse_system_ram_percent", "refId": "A"}], "fieldConfig": {"defaults": {"unit": "percent"}, "overrides": []}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}},
+    {"id": 4, "title": "Local Disk %", "type": "stat", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 5, "w": 6, "x": 18, "y": 0}, "targets": [{"expr": "infrapulse_system_disk_percent", "refId": "A"}], "fieldConfig": {"defaults": {"unit": "percent"}, "overrides": []}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}},
+    {"id": 5, "title": "Ping latency per target (ms)", "type": "timeseries", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 9, "w": 12, "x": 0, "y": 5}, "targets": [{"expr": "infrapulse_device_latency_ms", "legendFormat": "{{name}}", "refId": "A"}], "fieldConfig": {"defaults": {"unit": "ms"}, "overrides": []}, "options": {}},
+    {"id": 6, "title": "Packet loss per target (%)", "type": "timeseries", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 9, "w": 12, "x": 12, "y": 5}, "targets": [{"expr": "infrapulse_device_packet_loss_percent", "legendFormat": "{{name}}", "refId": "A"}], "fieldConfig": {"defaults": {"unit": "percent", "min": 0, "max": 100}, "overrides": []}, "options": {}},
+    {"id": 7, "title": "Local network throughput (Mbps)", "type": "timeseries", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 8, "w": 24, "x": 0, "y": 14}, "targets": [{"expr": "infrapulse_network_receive_mbps", "legendFormat": "Receive", "refId": "A"}, {"expr": "infrapulse_network_transmit_mbps", "legendFormat": "Transmit", "refId": "B"}], "fieldConfig": {"defaults": {"unit": "Mbps"}, "overrides": []}, "options": {}}
+  ]
+}

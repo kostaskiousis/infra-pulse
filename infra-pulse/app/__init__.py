@@ -1,0 +1,1 @@
+"""InfraPulse: lightweight infrastructure monitoring."""
